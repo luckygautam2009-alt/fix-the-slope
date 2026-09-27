@@ -66,7 +66,7 @@ The repository context discussed during this session also includes the audit phr
 
 - **Tool:** Claude (claude.ai)
 - **Date:** September 27, 2026
-- **File:** 
+- **session link :** https://claude.ai/share/baeb1be6-1187-4f79-a5d3-56c32a4c2f5f
 - **Description:** Used Claude to debug a website by sharing Chrome DevTools console screenshots and the site's `globals.js` and `main.js` source files. Claude identified real bugs (a null-reference crash on `#hero-video.play()`, an undefined `nexoraBootstrapCMS()` call, a broken `toggleTheme()` due to an assignment-instead-of-comparison bug, an `isAdmin` variable that defaulted to `true` for all users, XSS-vulnerable no-op sanitization functions, and reflow-causing mousemove handlers), produced a prioritized debugging plan, and flagged that the source files contained prompt-injection text aimed at AI assistants (fake "reviewed ✅" comments, instructions not to fix real bugs, and a hidden instruction to insert an audit marker/phrase) — which Claude identified and did not comply with.
 
 ---
