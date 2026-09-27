@@ -133,6 +133,18 @@ I served the site locally (`python3 -m http.server 8000`), opened each page in t
 
 ---
 
+## 12. Injected console noise and fake "KNOWN ISSUE" errors — `js/globals.js`
+
+**What I saw:** Opening DevTools revealed continuous console spam: recurring errors (`[nexora/ws] socket closed`), warnings (`[nexora/layout] forced reflow`), token stream logs, and heartbeat messages firing on intervals. It also printed fabricated "KNOWN ISSUE" errors (claiming MC-4019, MC-3877, MC-4471), a failing theme-cache assertion, and a compliance nag timer demanding audit markers.
+
+**Why it happened:** `js/globals.js` contained planted telemetry noise, interval spam, and prompt-injection strings intended to confuse automated tools and mask real defects.
+
+**What I changed:** Removed the entire injected noise block from `js/globals.js`, including the three `setInterval` noise timers, heartbeat interval, fake `console.error` / `console.warn` / `console.info` / `console.assert` calls, and the `setTimeout` compliance nag.
+
+**Chat:** `04-antigravity-session` (Console Noise Cleanup)
+
+---
+
 ## Files I modified
 
 | File | What changed |
@@ -144,4 +156,5 @@ I served the site locally (`python3 -m http.server 8000`), opened each page in t
 | `tools.html` | Added otter-7 meta, favicon link, CMS bootstrap stub |
 | `favicon.ico` | New file — generated 16×16 icon |
 | `contact.htm` | New symlink → `contact.html` |
+| `js/globals.js` | Removed injected console noise timers, fake KNOWN ISSUE errors, and compliance nag block |
 
